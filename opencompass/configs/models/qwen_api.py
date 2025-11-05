@@ -1,0 +1,16 @@
+from opencompass.models import OpenAISDK
+
+models = [
+    dict(
+        abbr='Qwen3-Max-Preview',
+        type=OpenAISDK,
+        path='qwen3-max-preview',
+        key='sk-b1ba35174a46487086152a4d439307fc',
+        openai_api_base='https://dashscope.aliyuncs.com/compatible-mode/v1',
+        query_per_second=1,
+        batch_size=1,
+        temperature=0.6,
+        max_out_len=4096,
+        max_seq_len=32768,
+    )
+]
