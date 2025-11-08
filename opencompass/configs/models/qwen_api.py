@@ -10,6 +10,7 @@ models = [
         query_per_second=1,
         batch_size=1,
         temperature=0.6,
+        tokenizer_path='gpt-4',
         max_out_len=4096,
         max_seq_len=32768,
     )

@@ -45,8 +45,8 @@ def run_evaluation():
     cmd = [
         "python", "run.py", 
         "--models", "qwen_api", "qianfan_api", 
-        "--datasets", "ceval_gen", 
-        "-w", "outputs/ceval_test", 
+        "--datasets", "mmlu_gen", 
+        "-w", "outputs/mmlu_test", 
         "--debug"
     ]
     
@@ -80,6 +80,6 @@ def upload_results(results_folder, blob_folder):
 
 
 if __name__ == "__main__":
-    download_folder("datasets/ceval", "/Users/shuishui/Desktop/opencompass/data")#("存储桶中的位置","本地的位置")
+    download_folder("datasets/mmlu", "/Users/shuishui/Desktop/opencompass/data")#("存储桶中的位置","本地的位置")
     run_evaluation()
-    upload_results("outputs/ceval_test", "results/ceval_test")#("本地的位置","存储桶中的位置")
+    upload_results("outputs/mmlu_test", "results/mmlu_test")#("本地的位置","存储桶中的位置")
