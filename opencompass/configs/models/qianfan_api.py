@@ -9,7 +9,6 @@ models = [
         openai_api_base='https://qianfan.baidubce.com/v2',
         query_per_second=1,
         batch_size=4,
-        temperature=0.001,
         tokenizer_path='gpt-4',
         max_out_len=16384,
         max_seq_len=32768,
