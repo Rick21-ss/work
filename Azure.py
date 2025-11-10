@@ -44,7 +44,7 @@ def download_folder(blob_folder_path, local_folder_path):
 def run_evaluation():
     cmd = [
         "python", "run.py", 
-        "--models", "qwen_api", "qianfan_api", 
+        "--models", "qianfan_api", 
         "--datasets", "mmlu_gen", 
         "-w", "outputs/mmlu_test", 
         "--debug"
