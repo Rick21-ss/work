@@ -1,0 +1,45 @@
+{
+  "storage": {
+    "account_name": "rick21",
+    "container_name": "opencompass",
+    "environment_key": "AZURE_STORAGE_KEY"
+  },
+  "download": {
+    "blob_folder_path": "datasets/ceval",
+    "local_folder_path": "/Users/shuishui/Desktop/opencompass/data"
+  },
+  "evaluation": {
+    "models": ["qwen_api", "qianfan_api"],
+    "datasets": ["configuration"],
+    "work_dir": "outputs/ceval_test",
+    "debug": true
+  },
+  "upload": {
+    "local_results_folder": "outputs/ceval_test",
+    "blob_results_folder": "results/ceval_test"
+  },
+ "dataset": {
+    "custom": {
+      "type": "CEvalDataset",
+      "path": "./data/ceval",
+      "input_columns": ["question", "A", "B", "C", "D"],
+      "output_column": "answer"
+    }
+  },
+  "inference": {
+    "multiple_choice": {
+      "prompt_template": "以下是中国关于{subject}考试的单项选择题，请选出正确答案。\n{question}\nA. {A}\nB. {B}\nC. {C}\nD. {D}\n答案:",
+      "retriever": "FixKRetriever",
+      "shot_count": 5
+    }
+  },
+  "evaluation_templates": {
+    "standard_accuracy": {
+      "evaluator": "AccEvaluator",
+      "postprocessor": "first_capital_postprocess"
+    }
+  },
+  "all_sets": {
+    "computer_network": ["Computer Network", "计算机网络", "STEM"]
+  }
+}

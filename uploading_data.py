@@ -7,8 +7,8 @@ STORAGE_ACCOUNT_NAME = "rick21"
 ACCOUNT_KEY = os.environ["AZURE_STORAGE_KEY"]
 CONTAINER_NAME = "opencompass"
 
-local_folder = "/Users/shuishui/Desktop/opencompass/data/mmlu"#本地上传的数据的具体路径
-blob_folder = "datasets/mmlu"#存储桶中要存储的位置
+local_folder = "/Users/shuishui/Desktop/opencompass/data/ceval"#本地上传的数据的具体路径
+blob_folder = "datasets/ceval"#存储桶中要存储的位置
 
 
 # 批量上传文件夹中的所有文件

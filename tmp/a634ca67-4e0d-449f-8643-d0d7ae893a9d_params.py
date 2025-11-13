@@ -1,0 +1,68 @@
+datasets = [
+    [
+        dict(
+            abbr='ceval-computer_network',
+            eval_cfg=dict(
+                evaluator=dict(
+                    type='opencompass.openicl.icl_evaluator.AccEvaluator'),
+                pred_postprocessor=dict(
+                    type=
+                    'opencompass.utils.text_postprocessors.first_capital_postprocess'
+                )),
+            infer_cfg=dict(
+                ice_template=dict(
+                    ice_token='</E>',
+                    template=dict(
+                        begin='</E>',
+                        round=[
+                            dict(
+                                prompt=
+                                '以下是中国关于计算机网络考试的单项选择题，请选出其中的正确答案。\n{question}\nA. {A}\nB. {B}\nC. {C}\nD. {D}\n答案: ',
+                                role='HUMAN'),
+                            dict(prompt='{answer}', role='BOT'),
+                        ]),
+                    type=
+                    'opencompass.openicl.icl_prompt_template.PromptTemplate'),
+                inferencer=dict(
+                    type='opencompass.openicl.icl_inferencer.GenInferencer'),
+                retriever=dict(
+                    fix_id_list=[
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                    ],
+                    type='opencompass.openicl.icl_retriever.FixKRetriever')),
+            name='computer_network',
+            path='opencompass/ceval-exam',
+            reader_cfg=dict(
+                input_columns=[
+                    'question',
+                    'A',
+                    'B',
+                    'C',
+                    'D',
+                ],
+                output_column='answer',
+                test_split='val',
+                train_split='dev'),
+            type='opencompass.datasets.CEvalDataset'),
+    ],
+]
+models = [
+    dict(
+        abbr='ernie-x1.1-preview',
+        batch_size=128,
+        key=
+        'bce-v3/ALTAK-uARdaVcSqYLhSSlIovGNJ/7206fbda503b0f144e8d1e03626b165152e54c94',
+        max_out_len=16384,
+        max_seq_len=32768,
+        openai_api_base='https://qianfan.baidubce.com/v2',
+        path='ernie-x1.1-preview',
+        query_per_second=16,
+        temperature=0.7,
+        tokenizer_path='gpt-4',
+        type='opencompass.models.OpenAISDK'),
+]
+work_dir = 'outputs/mmlu_test/20251111_174631'

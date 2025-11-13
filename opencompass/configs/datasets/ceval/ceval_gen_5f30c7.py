@@ -59,7 +59,6 @@ ceval_subject_mapping = {
     'environmental_impact_assessment_engineer': ['Environmental Impact Assessment Engineer', '环境影响评价工程师', 'Other'],
     'tax_accountant': ['Tax Accountant', '税务师', 'Other'],
     'physician': ['Physician', '医师资格', 'Other'],
-    
 }
 ceval_all_sets = list(ceval_subject_mapping.keys())
 

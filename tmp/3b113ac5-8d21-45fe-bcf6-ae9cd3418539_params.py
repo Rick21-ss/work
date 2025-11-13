@@ -1,0 +1,57 @@
+datasets = [
+    [
+        dict(
+            abbr='lukaemon_mmlu_college_biology',
+            eval_cfg=dict(
+                evaluator=dict(
+                    type='opencompass.openicl.icl_evaluator.AccEvaluator'),
+                pred_postprocessor=dict(
+                    answer_pattern='(?i)ANSWER\\s*:\\s*([A-D])',
+                    type=
+                    'opencompass.utils.text_postprocessors.match_answer_pattern'
+                )),
+            infer_cfg=dict(
+                inferencer=dict(
+                    type='opencompass.openicl.icl_inferencer.GenInferencer'),
+                prompt_template=dict(
+                    template=dict(round=[
+                        dict(
+                            prompt=
+                            "Answer the following multiple choice question. The last line of your response should be of the following format: 'ANSWER: $LETTER' (without quotes) where LETTER is one of ABCD. Think step by step before answering.\n\n{input}\n\nA) {A}\nB) {B}\nC) {C}\nD) {D}",
+                            role='HUMAN'),
+                    ]),
+                    type=
+                    'opencompass.openicl.icl_prompt_template.PromptTemplate'),
+                retriever=dict(
+                    type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+            name='college_biology',
+            path='opencompass/mmlu',
+            reader_cfg=dict(
+                input_columns=[
+                    'input',
+                    'A',
+                    'B',
+                    'C',
+                    'D',
+                ],
+                output_column='target',
+                train_split='dev'),
+            type='opencompass.datasets.MMLUDataset'),
+    ],
+]
+models = [
+    dict(
+        abbr='ernie-x1.1-preview',
+        batch_size=128,
+        key=
+        'bce-v3/ALTAK-uARdaVcSqYLhSSlIovGNJ/7206fbda503b0f144e8d1e03626b165152e54c94',
+        max_out_len=16384,
+        max_seq_len=32768,
+        openai_api_base='https://qianfan.baidubce.com/v2',
+        path='ernie-x1.1-preview',
+        query_per_second=16,
+        temperature=0.7,
+        tokenizer_path='gpt-4',
+        type='opencompass.models.OpenAISDK'),
+]
+work_dir = 'outputs/mmlu_test/20251111_173549'
